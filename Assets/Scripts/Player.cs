@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
+	public float speed = 5.0f;
+
 	// Use this for initialization
 	void Start () {
-		Debug.Log("lol");
+		transform.position = new Vector3(0, 0, 0);
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		float horizontalInput = Input.GetAxis("Horizontal");
+		float verticalInput = Input.GetAxis("Vertical");
 		
+		transform.Translate(Vector3.right * horizontalInput * speed * Time.deltaTime);
+		transform.Translate(Vector3.up * verticalInput * speed * Time.deltaTime);
 	}
 }
