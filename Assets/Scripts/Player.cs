@@ -5,10 +5,14 @@ using UnityEngine;
 public class Player : MonoBehaviour {
 	
 	[SerializeField] private GameObject laserPrefab;
-	[SerializeField] private float speed = 5.0f;
+
 	private float yMax = 4.231822f;
 	private float xMax = 9.481674f;
 
+	[SerializeField] private float speed = 5.0f;
+	private float fireRate = 1.0F;
+	private float coolDown = 0.0F;
+	
 	// Use this for initialization
 	private void Start () {
 		transform.position = new Vector3(0, 0, 0);
@@ -41,7 +45,8 @@ public class Player : MonoBehaviour {
 	}
 
 	private void Fire() {
-		if (Input.GetKeyDown(KeyCode.Space)) {
+		if (Input.GetKeyDown(KeyCode.Space) && Time.time > coolDown) {
+			coolDown = Time.time + fireRate;
 			Instantiate(laserPrefab, new Vector3(transform.position.x, transform.position.y + 1.03f, transform.position.z), Quaternion.identity);
 		}
 	}
