@@ -10,7 +10,7 @@ public class Player : MonoBehaviour {
 	private float xMax = 9.481674f;
 
 	[SerializeField] private float speed = 5.0f;
-	private float fireRate = 1.0F;
+	[SerializeField] private float fireRate = 0.25F;
 	private float coolDown = 0.0F;
 	
 	// Use this for initialization
