@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 	
+	public bool canTripleShot = false;
+
 	[SerializeField] private GameObject _laserPrefab;
 
 	private float _yMax = 4.231822f;
@@ -50,5 +52,9 @@ public class Player : MonoBehaviour {
 	private void Shoot() {
 		_coolDown = Time.time + _fireRate;
 		Instantiate(_laserPrefab, new Vector3(transform.position.x, transform.position.y + 1.03f, transform.position.z), Quaternion.identity);
+		if (canTripleShot) {
+			Instantiate(_laserPrefab, new Vector3(transform.position.x + 0.552F, transform.position.y + 0.182F, transform.position.z), Quaternion.identity);
+			Instantiate(_laserPrefab, new Vector3(transform.position.x - 0.552F, transform.position.y + 0.182F, transform.position.z), Quaternion.identity);
+		}
 	}
 }
