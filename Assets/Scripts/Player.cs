@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 	
-	[SerializeField] private GameObject laserPrefab;
+	[SerializeField] private GameObject _laserPrefab;
 
-	private float yMax = 4.231822f;
-	private float xMax = 9.481674f;
+	private float _yMax = 4.231822f;
+	private float _xMax = 9.481674f;
 
-	[SerializeField] private float speed = 5.0f;
-	[SerializeField] private float fireRate = 0.25F;
-	private float coolDown = 0.0F;
+	[SerializeField] private float _speed = 5.0f;
+	[SerializeField] private float _fireRate = 0.25F;
+	private float _coolDown = 0.0F;
 	
 	// Use this for initialization
 	private void Start () {
@@ -21,7 +21,10 @@ public class Player : MonoBehaviour {
 	// Update is called once per frame
 	private void Update () {
 		Movement();
-		Fire();
+
+		if (Input.GetKeyDown(KeyCode.Space) && Time.time > _coolDown) {
+			Shoot();
+		}
 	}
 
 	private void Movement() {
@@ -29,25 +32,23 @@ public class Player : MonoBehaviour {
 		float verticalInput = Input.GetAxis("Vertical");
 
 		// Input and Movement
-		transform.Translate(Vector3.right * horizontalInput * speed * Time.deltaTime);
-		transform.Translate(Vector3.up * verticalInput * speed * Time.deltaTime);
+		transform.Translate(Vector3.right * horizontalInput * _speed * Time.deltaTime);
+		transform.Translate(Vector3.up * verticalInput * _speed * Time.deltaTime);
 
 		// Play Area Boundaries
-		if (transform.position.y > yMax) {
-			transform.position = new Vector3(transform.position.x, yMax, transform.position.z);
-		} else if (transform.position.y < -yMax) {
-			transform.position = new Vector3(transform.position.x, -yMax, transform.position.z);
-		} else if (transform.position.x > xMax) {
-			transform.position = new Vector3(-xMax, transform.position.y, transform.position.z);
-		} else if (transform.position.x < -xMax) {
-			transform.position = new Vector3(xMax, transform.position.y, transform.position.z);
+		if (transform.position.y > _yMax) {
+			transform.position = new Vector3(transform.position.x, _yMax, transform.position.z);
+		} else if (transform.position.y < -_yMax) {
+			transform.position = new Vector3(transform.position.x, -_yMax, transform.position.z);
+		} else if (transform.position.x > _xMax) {
+			transform.position = new Vector3(-_xMax, transform.position.y, transform.position.z);
+		} else if (transform.position.x < -_xMax) {
+			transform.position = new Vector3(_xMax, transform.position.y, transform.position.z);
 		}
 	}
 
-	private void Fire() {
-		if (Input.GetKeyDown(KeyCode.Space) && Time.time > coolDown) {
-			coolDown = Time.time + fireRate;
-			Instantiate(laserPrefab, new Vector3(transform.position.x, transform.position.y + 1.03f, transform.position.z), Quaternion.identity);
-		}
+	private void Shoot() {
+		_coolDown = Time.time + _fireRate;
+		Instantiate(_laserPrefab, new Vector3(transform.position.x, transform.position.y + 1.03f, transform.position.z), Quaternion.identity);
 	}
 }
