@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
-	public float speed = 5.0f;
-	public float yMax = 4.231822f;
+	private float speed = 5.0f;
+	private float yMax = 4.231822f;
 
-	public float xMax = 8.310589f;
+	private float xMax = 9.481674f;
 
 	// Use this for initialization
 	void Start () {
