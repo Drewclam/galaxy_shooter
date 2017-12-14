@@ -1,10 +1,15 @@
 fileFormatVersion: 2
 guid: 9ebde702a57764ca380a20b06c6c67f0
-timeCreated: 1512270689
+timeCreated: 1513216562
 licenseType: Free
 MonoImporter:
+  externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - _laserPrefab: {fileID: 1818534557122148, guid: 762cd355bbaa745c6b02c0d3e1d427bc,
+      type: 2}
+  - _tripleShotPrefab: {fileID: 1536695480066232, guid: 9daad35547851496c9067e9d9aeb4060,
+      type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
