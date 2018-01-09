@@ -22,13 +22,18 @@ public class Powerup : MonoBehaviour {
 		Player player = other.GetComponent<Player>();
 
 		if (other.tag == "Player" && player != null) {
-			if (id == 0) {
-				player.tripleShotPowerUp();
-			} else if (id == 1) {
-				// enable speed power up
-				player.speedPowerUp();
-			} else if (id == 2) {
-				// enable shield power up
+			switch (id) {
+				case 0: 
+					player.tripleShotPowerUp();
+					break;
+				case 1:
+					player.speedPowerUp();
+					break;
+				case 2:
+					Debug.Log("Start shield power up");
+					break;
+				default:
+					break;
 			}
 			Destroy(gameObject);
 		}
