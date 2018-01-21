@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
-	
+	public int health = 3;
 	public bool canTripleShot = false;
 	[SerializeField] private bool isSpeedUp = false;
 
@@ -18,7 +18,14 @@ public class Player : MonoBehaviour {
 	[SerializeField] private float _fireRate = 0.25F;
 	private float _coolDown = 0.0F;
 	
-	// Use this for initialization
+	// everytime collides with an enemy
+		// enemy destroyed
+		// player loses a life
+		// if lives are equal to 0
+			// destoy player
+	// everytime laser hits enemey
+		// enemy destroyed
+		// laser destroyed
 	private void Start () {
 		transform.position = new Vector3(0, 0, 0);
 	}

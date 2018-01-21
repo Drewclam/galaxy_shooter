@@ -3,33 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyAI : MonoBehaviour {
-	// speed
-	private float speed = 3.0F;
-	private float yMax = 4.231822f;
-	private float xMax = 9.481674f;
-
-	// Use this for initialization
-	void Start () {
-	}
+	private float speed = 5.0F;
+	private float yMax = 6.46F;
 	
-	// Update is called once per frame
 	void Update () {
-		// move down 
-		Move();
+		transform.Translate(Vector3.down  * speed * Time.deltaTime);
+
 		if (!getIsWithinBoundary()) {
-			transform.position = new Vector3(Random.Range(-7.87F, 7.87F), yMax, transform.position.z);
+			float randomX = Random.Range(-7.87F, 7.87F);
+			transform.position = new Vector3(randomX, yMax, transform.position.z);
 		}
 	}
 
-	void Move() {
-		transform.Translate(Vector3.down  * speed * Time.deltaTime);
+	bool getIsWithinBoundary() {
+		return transform.position.y < -yMax ? false : true;
 	}
 
-	bool getIsWithinBoundary() {
-		if (transform.position.y < -yMax) {
-			return false;
-		} else {
-			return true;
+	void OnTriggerEnter2D(Collider2D other) {
+		Laser laser = other.GetComponent<Laser>();
+		
+		if (laser != null) {
+			float randomX = Random.Range(-7.87F, 7.87F);
+			Destroy(laser.gameObject);
+			Instantiate(this.gameObject, new Vector3(randomX, yMax, transform.position.z), Quaternion.identity);
+			Destroy(this.gameObject);
 		}
 	}
 }
