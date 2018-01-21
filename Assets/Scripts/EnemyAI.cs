@@ -19,14 +19,23 @@ public class EnemyAI : MonoBehaviour {
 		return transform.position.y < -yMax ? false : true;
 	}
 
-	void OnTriggerEnter2D(Collider2D other) {
-		Laser laser = other.GetComponent<Laser>();
-		
-		if (laser != null) {
-			float randomX = Random.Range(-7.87F, 7.87F);
-			Destroy(laser.gameObject);
-			Instantiate(this.gameObject, new Vector3(randomX, yMax, transform.position.z), Quaternion.identity);
-			Destroy(this.gameObject);
+	void OnTriggerEnter2D(Collider2D collided) {
+		float randomX = Random.Range(-7.87F, 7.87F);
+
+		switch(collided.tag) {
+			case "Laser":
+				Destroy(collided.gameObject);
+				Destroy(this.gameObject);
+				Instantiate(this.gameObject, new Vector3(randomX, yMax, transform.position.z), Quaternion.identity);
+				break;
+			case "Player":
+				Player player = collided.GetComponent<Player>();
+				Instantiate(this.gameObject, new Vector3(randomX, yMax, transform.position.z), Quaternion.identity);
+				Destroy(this.gameObject);
+				player.damage();
+				break;
+			default:
+				break;
 		}
 	}
 }

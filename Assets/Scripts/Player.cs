@@ -17,15 +17,7 @@ public class Player : MonoBehaviour {
 	private float _powerUpSpeed = 10.0F;
 	[SerializeField] private float _fireRate = 0.25F;
 	private float _coolDown = 0.0F;
-	
-	// everytime collides with an enemy
-		// enemy destroyed
-		// player loses a life
-		// if lives are equal to 0
-			// destoy player
-	// everytime laser hits enemey
-		// enemy destroyed
-		// laser destroyed
+
 	private void Start () {
 		transform.position = new Vector3(0, 0, 0);
 	}
@@ -96,6 +88,14 @@ public class Player : MonoBehaviour {
 			transform.position = new Vector3(-_xMax, transform.position.y, transform.position.z);
 		} else if (transform.position.x < -_xMax) {
 			transform.position = new Vector3(_xMax, transform.position.y, transform.position.z);
+		}
+	}
+
+	public void damage() {
+		health--;
+
+		if (health <= 0) {
+			Destroy(this.gameObject);
 		}
 	}
 }
