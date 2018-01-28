@@ -10,7 +10,6 @@ public class Player : MonoBehaviour {
 	[SerializeField] private GameObject explosionPrefab;
 	[SerializeField] private GameObject _laserPrefab;
 	[SerializeField] private GameObject _tripleShotPrefab;
-	[SerializeField] private GameObject shieldPrefab;
 
 	private float _yMax = 4.231822f;
 	private float _xMax = 9.481674f;
@@ -65,9 +64,10 @@ public class Player : MonoBehaviour {
 		}
 	}
 
-	public void powerUpShield() {
-		hasShield = true;
-		Instantiate(shieldPrefab, transform.position, Quaternion.identity);
+	public void powerUpShield(bool state) {
+		GameObject shield = this.gameObject.transform.GetChild(0).gameObject;
+		hasShield = state;
+		shield.SetActive(state);
 	}
 
 	private IEnumerator powerDown(bool power, float coolDown = 5.0F) {
@@ -93,9 +93,7 @@ public class Player : MonoBehaviour {
 
 	public void damage() {
 		if (hasShield) {
-			GameObject shield = GameObject.FindGameObjectWithTag("Shield");
-			Destroy(shield);
-			hasShield = false;
+			powerUpShield(false);
 		} else {
 			health--;
 			if (health <= 0) {

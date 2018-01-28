@@ -22,7 +22,7 @@ public class Powerup : MonoBehaviour {
 					player.powerUp(player.isSpeedUp, true);
 					break;
 				case 2:
-					player.powerUpShield();
+					player.powerUpShield(true);
 					break;
 				default:
 					break;
