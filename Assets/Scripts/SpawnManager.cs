@@ -7,12 +7,17 @@ public class SpawnManager : MonoBehaviour {
 	[SerializeField] private GameObject[] powerUps;
 
 	// Use this for initialization
-	void Start () {
-		
+	IEnumerator Start () {
+		while (true) {
+			yield return new WaitForSeconds(5.0F);
+			StartCoroutine("spawnEnemy");
+		}
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+
+	private void spawnEnemy() {
+		float randomX = Random.Range(-7.87F, 7.87F);
+		float yMax = 6.46F;
+
+		Instantiate(enemyPrefab, new Vector3(randomX, yMax, transform.position.z), Quaternion.identity);
 	}
 }

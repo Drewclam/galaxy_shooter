@@ -30,12 +30,12 @@ public class EnemyAI : MonoBehaviour {
 				if (collided.transform.parent != null) {
 					Destroy(collided.transform.parent.gameObject);
 				}
-				Instantiate(this.gameObject, new Vector3(randomX, yMax, transform.position.z), Quaternion.identity);
+				// Instantiate(this.gameObject, new Vector3(randomX, yMax, transform.position.z), Quaternion.identity);
 				Destroy(collided.gameObject);
 				destroyMe();
 				break;
 			case "Player":
-				Instantiate(this.gameObject, new Vector3(randomX, yMax, transform.position.z), Quaternion.identity);
+				// Instantiate(this.gameObject, new Vector3(randomX, yMax, transform.position.z), Quaternion.identity);
 				destroyMe();
 				player.damage();
 				break;
