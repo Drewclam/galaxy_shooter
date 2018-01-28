@@ -3,17 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Powerup : MonoBehaviour {
-
-	// [SerializeField] private GameObject _tripleShotPowerUpPreFab;
-	[SerializeField] private float _speed = 3.0F;
+	[SerializeField] private float _speed = 2.0F;
 	[SerializeField] private int id;
-
-	// Use this for initialization
-	void Start () {
-		
-	}
 	
-	// Update is called once per frame
 	void Update () {
 		transform.Translate(Vector3.down * _speed * Time.deltaTime);
 	}
@@ -24,13 +16,13 @@ public class Powerup : MonoBehaviour {
 		if (other.tag == "Player" && player != null) {
 			switch (id) {
 				case 0: 
-					player.tripleShotPowerUp();
+					player.powerUp(player.canTripleShot, true);
 					break;
 				case 1:
-					player.speedPowerUp();
+					player.powerUp(player.isSpeedUp, true);
 					break;
 				case 2:
-					Debug.Log("Start shield power up");
+					player.powerUpShield();
 					break;
 				default:
 					break;

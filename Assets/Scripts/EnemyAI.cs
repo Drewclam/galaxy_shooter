@@ -23,6 +23,7 @@ public class EnemyAI : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D collided) {
 		float randomX = Random.Range(-7.87F, 7.87F);
+		Player player = collided.GetComponent<Player>();
 
 		switch(collided.tag) {
 			case "Laser":
@@ -34,7 +35,6 @@ public class EnemyAI : MonoBehaviour {
 				destroyMe();
 				break;
 			case "Player":
-				Player player = collided.GetComponent<Player>();
 				Instantiate(this.gameObject, new Vector3(randomX, yMax, transform.position.z), Quaternion.identity);
 				destroyMe();
 				player.damage();

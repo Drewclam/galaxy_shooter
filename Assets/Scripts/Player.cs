@@ -5,10 +5,12 @@ using UnityEngine;
 public class Player : MonoBehaviour {
 	public int health = 3;
 	public bool canTripleShot = false;
-	[SerializeField] private bool isSpeedUp = false;
+	public bool isSpeedUp = false;
+	public bool hasShield = false;
 	[SerializeField] private GameObject explosionPrefab;
 	[SerializeField] private GameObject _laserPrefab;
 	[SerializeField] private GameObject _tripleShotPrefab;
+	[SerializeField] private GameObject shieldPrefab;
 
 	private float _yMax = 4.231822f;
 	private float _xMax = 9.481674f;
@@ -55,24 +57,22 @@ public class Player : MonoBehaviour {
 		}
 	}
 
-	public void tripleShotPowerUp() {
-		canTripleShot = true;
-		StartCoroutine(tripleShotPowerDownRoutine());
+	public void powerUp(bool power, bool isPoweredDown) {
+		power = true;
+
+		if (isPoweredDown) {
+			StartCoroutine(powerDown(power));
+		}
 	}
 
-	private IEnumerator tripleShotPowerDownRoutine() {
-		yield return new WaitForSeconds(5.0F);
-		canTripleShot = false;
+	public void powerUpShield() {
+		hasShield = true;
+		Instantiate(shieldPrefab, transform.position, Quaternion.identity);
 	}
 
-	public void speedPowerUp() {
-		isSpeedUp = true;
-		StartCoroutine(speedPowerDownRoutine());
-	}
-
-	private IEnumerator speedPowerDownRoutine() {
-		yield return new WaitForSeconds(5.0F);
-		isSpeedUp = false;
+	private IEnumerator powerDown(bool power, float coolDown = 5.0F) {
+		yield return new WaitForSeconds(coolDown);
+		power = false;
 	}
 
 	private void move(Vector3 direction, float speed) {
@@ -92,11 +92,16 @@ public class Player : MonoBehaviour {
 	}
 
 	public void damage() {
-		health--;
-
-		if (health <= 0) {
-			Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-			Destroy(this.gameObject);
+		if (hasShield) {
+			GameObject shield = GameObject.FindGameObjectWithTag("Shield");
+			Destroy(shield);
+			hasShield = false;
+		} else {
+			health--;
+			if (health <= 0) {
+				Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+				Destroy(this.gameObject);
+			}
 		}
 	}
 }
