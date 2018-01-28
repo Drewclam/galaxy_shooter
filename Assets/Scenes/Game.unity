@@ -232,6 +232,52 @@ Transform:
   m_PrefabParentObject: {fileID: 4388110924900674, guid: 87a54767f7bd749f6a9f693ef09a6aad,
     type: 2}
   m_PrefabInternal: {fileID: 699796096}
+--- !u!1 &591790655
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 591790657}
+  - component: {fileID: 591790656}
+  m_Layer: 0
+  m_Name: SpawnManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &591790656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 591790655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 556d9a3ca6c2a453bbb7fb31ff0e32dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyPrefab: {fileID: 1473666859503462, guid: eb6dc4aa483174cc2afd19ae50adc7ed,
+    type: 2}
+  powerUps:
+  - {fileID: 1276097633982914, guid: 1adffc1cdc0714fe9bf41aa29700ad9c, type: 2}
+  - {fileID: 1114295243336968, guid: 3dbb754a1101a491a92bbcef313ece9b, type: 2}
+  - {fileID: 1630471233066480, guid: 2b9afb8cdb13c4ba8b413bd0156e2f68, type: 2}
+--- !u!4 &591790657
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 591790655}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &699796096
 Prefab:
   m_ObjectHideFlags: 0
@@ -619,17 +665,9 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4914262398836422, guid: c28f9ddfd9d944b08bc1798d27ed8dd1, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4914262398836422, guid: c28f9ddfd9d944b08bc1798d27ed8dd1, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1.7857138
-      objectReference: {fileID: 0}
-    - target: {fileID: 4914262398836422, guid: c28f9ddfd9d944b08bc1798d27ed8dd1, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 2.8571427
+    - target: {fileID: 1097968203610220, guid: c28f9ddfd9d944b08bc1798d27ed8dd1, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c28f9ddfd9d944b08bc1798d27ed8dd1, type: 2}
