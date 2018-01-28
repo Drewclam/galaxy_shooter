@@ -6,7 +6,7 @@ public class Player : MonoBehaviour {
 	public int health = 3;
 	public bool canTripleShot = false;
 	[SerializeField] private bool isSpeedUp = false;
-
+	[SerializeField] private GameObject explosionPrefab;
 	[SerializeField] private GameObject _laserPrefab;
 	[SerializeField] private GameObject _tripleShotPrefab;
 
@@ -95,6 +95,7 @@ public class Player : MonoBehaviour {
 		health--;
 
 		if (health <= 0) {
+			Instantiate(explosionPrefab, transform.position, Quaternion.identity);
 			Destroy(this.gameObject);
 		}
 	}
