@@ -56,12 +56,14 @@ public class Player : MonoBehaviour {
 		}
 	}
 
-	public void powerUp(bool power, bool isPoweredDown) {
-		power = true;
+	public void powerUpTripleShot() {
+		canTripleShot = true;
+		StartCoroutine(powerTripleShotDown());
+	}
 
-		if (isPoweredDown) {
-			StartCoroutine(powerDown(power));
-		}
+	public void powerUpSpeed() {
+		isSpeedUp = true;
+		StartCoroutine(powerSpeedDown());
 	}
 
 	public void powerUpShield(bool state) {
@@ -70,9 +72,14 @@ public class Player : MonoBehaviour {
 		shield.SetActive(state);
 	}
 
-	private IEnumerator powerDown(bool power, float coolDown = 5.0F) {
-		yield return new WaitForSeconds(coolDown);
-		power = false;
+	private IEnumerator powerSpeedDown() {
+		yield return new WaitForSeconds(5.0F);
+		isSpeedUp = false;
+	}
+
+	private IEnumerator powerTripleShotDown() {
+		yield return new WaitForSeconds(5.0F);
+		canTripleShot = false;
 	}
 
 	private void move(Vector3 direction, float speed) {

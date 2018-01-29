@@ -16,10 +16,10 @@ public class Powerup : MonoBehaviour {
 		if (other.tag == "Player" && player != null) {
 			switch (id) {
 				case 0: 
-					player.powerUp(player.canTripleShot, true);
+					player.powerUpTripleShot();
 					break;
 				case 1:
-					player.powerUp(player.isSpeedUp, true);
+					player.powerUpSpeed();
 					break;
 				case 2:
 					player.powerUpShield(true);
