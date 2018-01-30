@@ -109,8 +109,6 @@ MonoBehaviour:
     type: 2}
   _tripleShotPrefab: {fileID: 1536695480066232, guid: 9daad35547851496c9067e9d9aeb4060,
     type: 2}
-  shieldPrefab: {fileID: 1097968203610220, guid: c28f9ddfd9d944b08bc1798d27ed8dd1,
-    type: 2}
   _speed: 5
   _fireRate: 0.25
 --- !u!212 &212821414347286322
