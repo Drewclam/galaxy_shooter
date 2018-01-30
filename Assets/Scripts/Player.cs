@@ -24,10 +24,11 @@ public class Player : MonoBehaviour {
 	private void Start () {
 		// intialize UI
 		uIManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+
 		if (uIManager != null) {
 			uIManager.updateLives(health);
 		}
-		
+
 		transform.position = new Vector3(0, 0, 0);
 	}
 	
@@ -112,6 +113,7 @@ public class Player : MonoBehaviour {
 			powerUpShield(false);
 		} else {
 			health--;
+			uIManager.updateLives(health);
 			if (health <= 0) {
 				Instantiate(explosionPrefab, transform.position, Quaternion.identity);
 				Destroy(this.gameObject);
