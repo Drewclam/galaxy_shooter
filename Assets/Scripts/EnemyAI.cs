@@ -5,8 +5,13 @@ using UnityEngine;
 public class EnemyAI : MonoBehaviour {
 	private float speed = 5.0F;
 	private float yMax = 6.46F;
-
+	private UIManager uIManager;
 	[SerializeField] private GameObject _explosionPrefab;
+
+	void Start() {
+		// init ui manager
+		uIManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+	}
 	
 	void Update () {
 		transform.Translate(Vector3.down  * speed * Time.deltaTime);
@@ -30,12 +35,10 @@ public class EnemyAI : MonoBehaviour {
 				if (collided.transform.parent != null) {
 					Destroy(collided.transform.parent.gameObject);
 				}
-				// Instantiate(this.gameObject, new Vector3(randomX, yMax, transform.position.z), Quaternion.identity);
 				Destroy(collided.gameObject);
 				destroyMe();
 				break;
 			case "Player":
-				// Instantiate(this.gameObject, new Vector3(randomX, yMax, transform.position.z), Quaternion.identity);
 				destroyMe();
 				player.damage();
 				break;
@@ -46,6 +49,7 @@ public class EnemyAI : MonoBehaviour {
 
 	private void destroyMe() {
 		Destroy(this.gameObject);
+		uIManager.updateScore();
 		Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
 	}
 }
