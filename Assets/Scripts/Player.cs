@@ -19,12 +19,21 @@ public class Player : MonoBehaviour {
 	[SerializeField] private float _fireRate = 0.25F;
 	private float _coolDown = 0.0F;
 
+	private UIManager uIManager;
+
 	private void Start () {
+		// intialize UI
+		uIManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+		if (uIManager != null) {
+			uIManager.updateLives(health);
+		}
+		
 		transform.position = new Vector3(0, 0, 0);
 	}
 	
 	// Update is called once per frame
 	private void Update () {
+
 		Movement();
 
 		if (Input.GetKeyDown(KeyCode.Space) && Time.time > _coolDown) {
