@@ -6,11 +6,13 @@ public class EnemyAI : MonoBehaviour {
 	private float speed = 5.0F;
 	private float yMax = 6.46F;
 	private UIManager uIManager;
+	private SpawnManager spawnManager;
 	[SerializeField] private GameObject _explosionPrefab;
 
 	void Start() {
-		// init ui manager
+		// initialize managers
 		uIManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+		spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
 	}
 	
 	void Update () {
@@ -48,8 +50,8 @@ public class EnemyAI : MonoBehaviour {
 	}
 
 	private void destroyMe() {
-		Destroy(this.gameObject);
 		uIManager.updateScore();
-		Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
+		Destroy(this.gameObject);
+		spawnManager.spawnExplosion(transform.position);
 	}
 }

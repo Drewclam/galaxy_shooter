@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour {
 	[SerializeField] private GameObject enemyPrefab;
+	[SerializeField] private GameObject explosionPrefab;
+	[SerializeField] private GameObject Player;
 	[SerializeField] private GameObject[] powerUps;
 
 	void Start() {
 		StartCoroutine(spawnEnemyRoutine());
 		StartCoroutine(spawnPowerUpRoutine());
+	}
+
+	public void spawnPlayer() {
+		Instantiate(Player, new Vector3(0, 0, 0), Quaternion.identity);
 	}
 
 	private IEnumerator spawnEnemyRoutine() {
@@ -17,7 +23,7 @@ public class SpawnManager : MonoBehaviour {
 		while (true) {
 			float randomX = Random.Range(-7.87F, 7.87F);
 			Instantiate(enemyPrefab, new Vector3(randomX, yMax, transform.position.z), Quaternion.identity);
-			yield return new WaitForSeconds(0.5F);
+			yield return new WaitForSeconds(1.0F);
 		}
 	}
 
@@ -30,5 +36,10 @@ public class SpawnManager : MonoBehaviour {
 			Instantiate(powerUps[randomPowerUp], new Vector3(randomX, yMax, transform.position.z), Quaternion.identity);
 			yield return new WaitForSeconds(5.0F);
 		}
+	}
+
+	public void spawnExplosion(Vector3 location) {
+		Instantiate(explosionPrefab, location, Quaternion.identity);
+		// Destroy(explosionPrefab, explosionPrefab.GetComponent<Animation>().clip.length);
 	}
 }

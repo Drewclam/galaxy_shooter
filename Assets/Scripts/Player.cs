@@ -20,29 +20,27 @@ public class Player : MonoBehaviour {
 	private float _coolDown = 0.0F;
 
 	private UIManager uIManager;
+	private SpawnManager spawnManager;
 
 	private void Start () {
-		// intialize UI
+		// intialize managers
 		uIManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+		spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
 
 		if (uIManager != null) {
 			uIManager.updateLives(health);
 		}
-
-		transform.position = new Vector3(0, 0, 0);
 	}
 	
-	// Update is called once per frame
 	private void Update () {
-
-		Movement();
+		handleMovement();
 
 		if (Input.GetKeyDown(KeyCode.Space) && Time.time > _coolDown) {
 			Shoot();
 		}
 	}
 
-	private void Movement() {
+	private void handleMovement() {
 		float horizontalInput = Input.GetAxis("Horizontal");
 		float verticalInput = Input.GetAxis("Vertical");
 
@@ -115,7 +113,8 @@ public class Player : MonoBehaviour {
 			health--;
 			uIManager.updateLives(health);
 			if (health <= 0) {
-				Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+				uIManager.endGame();
+				spawnManager.spawnExplosion(transform.position);
 				Destroy(this.gameObject);
 			}
 		}
