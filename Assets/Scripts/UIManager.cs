@@ -17,12 +17,6 @@ public class UIManager : MonoBehaviour {
     spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
   }
 
-  void Update() {
-    if (Input.GetKeyDown(KeyCode.Space) && !isGameStarted) {
-      startGame();
-    }
-  }
-
 	public void updateLives(int currentLives) {
     livesImageDisplay.sprite = lives[currentLives];
   }
@@ -32,20 +26,16 @@ public class UIManager : MonoBehaviour {
     scoreText.text = "Score: " + score;
   }
 
-  private void resetScore() {
+  public void resetScore() {
     score = 0;
     scoreText.text = "Score: " + score;
   }
 
-  public void endGame() {
-    isGameStarted = false;
-    title.gameObject.SetActive(true);
-  }
-
-  public void startGame() {
-    isGameStarted = true;
+  public void hideTitle() {
     title.gameObject.SetActive(false);
-    resetScore();
-    spawnManager.spawnPlayer();
+  }
+  
+  public void showTitle() {
+    title.gameObject.SetActive(true);
   }
 }

@@ -21,11 +21,13 @@ public class Player : MonoBehaviour {
 
 	private UIManager uIManager;
 	private SpawnManager spawnManager;
+	private GameManager gameManager;
 
 	private void Start () {
 		// intialize managers
 		uIManager = GameObject.Find("Canvas").GetComponent<UIManager>();
 		spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
+		gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 
 		if (uIManager != null) {
 			uIManager.updateLives(health);
@@ -113,7 +115,7 @@ public class Player : MonoBehaviour {
 			health--;
 			uIManager.updateLives(health);
 			if (health <= 0) {
-				uIManager.endGame();
+				gameManager.isGameOver = true;
 				spawnManager.spawnExplosion(transform.position);
 				Destroy(this.gameObject);
 			}
