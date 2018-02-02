@@ -5,15 +5,10 @@ using UnityEngine;
 public class EnemyAI : MonoBehaviour {
 	private float speed = 5.0F;
 	private float yMax = 6.46F;
-	private UIManager uIManager;
-	private SpawnManager spawnManager;
-	private GameManager gameManager;
+ 	private GameManager gameManager;
 	[SerializeField] private GameObject _explosionPrefab;
 
 	void Start() {
-		// initialize managers
-		uIManager = GameObject.Find("Canvas").GetComponent<UIManager>();
-		spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
 		gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 	}
 	
@@ -30,7 +25,6 @@ public class EnemyAI : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D collided) {
-		float randomX = Random.Range(-7.87F, 7.87F);
 		Player player = collided.GetComponent<Player>();
 
 		switch(collided.tag) {
@@ -51,8 +45,8 @@ public class EnemyAI : MonoBehaviour {
 	}
 
 	private void destroyMe() {
-		uIManager.updateScore();
+		gameManager.uIManager.updateScore();
 		Destroy(this.gameObject); 
-		spawnManager.spawnExplosion(transform.position);
+		gameManager.spawnManager.spawnExplosion(transform.position);
 	}
 }

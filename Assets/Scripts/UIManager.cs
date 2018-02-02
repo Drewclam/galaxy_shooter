@@ -8,14 +8,7 @@ public class UIManager : MonoBehaviour {
   public Image livesImageDisplay;
   public int score = 0;
   public Text scoreText;
-  public bool isGameStarted = false;
   public Image title;
-
-  public SpawnManager spawnManager;
-
-  void Start() {
-    spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
-  }
 
 	public void updateLives(int currentLives) {
     livesImageDisplay.sprite = lives[currentLives];

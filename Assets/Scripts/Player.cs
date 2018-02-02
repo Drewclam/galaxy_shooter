@@ -18,22 +18,15 @@ public class Player : MonoBehaviour {
 	private float _powerUpSpeed = 10.0F;
 	[SerializeField] private float _fireRate = 0.25F;
 	private float _coolDown = 0.0F;
-
-	private UIManager uIManager;
-	private SpawnManager spawnManager;
 	private GameManager gameManager;
 	private AudioSource audioSource;
 
 	private void Start () {
-		// intialize managers
-		uIManager = GameObject.Find("Canvas").GetComponent<UIManager>();
-		spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
 		gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-		// init audio source
 		audioSource = GetComponent<AudioSource>();
 
-		if (uIManager != null) {
-			uIManager.updateLives(health);
+		if (gameManager.uIManager != null) {
+			gameManager.uIManager.updateLives(health);
 		}
 	}
 	
@@ -117,10 +110,10 @@ public class Player : MonoBehaviour {
 			powerUpShield(false);
 		} else {
 			health--;
-			uIManager.updateLives(health);
+			gameManager.uIManager.updateLives(health);
 			if (health <= 0) {
 				gameManager.isGameOver = true;
-				spawnManager.spawnExplosion(transform.position);
+				gameManager.spawnManager.spawnExplosion(transform.position);
 				Destroy(this.gameObject);
 			}
 		}
