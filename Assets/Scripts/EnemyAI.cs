@@ -52,7 +52,7 @@ public class EnemyAI : MonoBehaviour {
 
 	private void destroyMe() {
 		uIManager.updateScore();
-		Destroy(this.gameObject);
+		Destroy(this.gameObject); 
 		spawnManager.spawnExplosion(transform.position);
 	}
 }

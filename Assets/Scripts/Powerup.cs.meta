@@ -1,11 +1,12 @@
 fileFormatVersion: 2
 guid: e1b5a7522464f4c6ca33eccf08deeeb5
-timeCreated: 1515381088
+timeCreated: 1517548573
 licenseType: Free
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - powerUpClip: {fileID: 8300000, guid: 5ee343246919d2b4bba63ae629e95494, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -22,12 +22,15 @@ public class Player : MonoBehaviour {
 	private UIManager uIManager;
 	private SpawnManager spawnManager;
 	private GameManager gameManager;
+	private AudioSource audioSource;
 
 	private void Start () {
 		// intialize managers
 		uIManager = GameObject.Find("Canvas").GetComponent<UIManager>();
 		spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
 		gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+		// init audio source
+		audioSource = GetComponent<AudioSource>();
 
 		if (uIManager != null) {
 			uIManager.updateLives(health);
@@ -59,6 +62,7 @@ public class Player : MonoBehaviour {
 
 	private void Shoot() {
 		_coolDown = Time.time + _fireRate;
+		audioSource.Play();
 		if (canTripleShot) {
 			Instantiate(_tripleShotPrefab, transform.position, Quaternion.identity);
 		} else {
