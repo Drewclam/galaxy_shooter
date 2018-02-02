@@ -10,13 +10,12 @@ public class Player : MonoBehaviour {
 	[SerializeField] private GameObject explosionPrefab;
 	[SerializeField] private GameObject _laserPrefab;
 	[SerializeField] private GameObject _tripleShotPrefab;
-
+	[SerializeField] private float _speed = 5.0F;
+	[SerializeField] private float _fireRate = 0.25F;
+	[SerializeField] private GameObject[] engineFires;
 	private float _yMax = 4.231822f;
 	private float _xMax = 9.481674f;
-
-	[SerializeField] private float _speed = 5.0F;
 	private float _powerUpSpeed = 10.0F;
-	[SerializeField] private float _fireRate = 0.25F;
 	private float _coolDown = 0.0F;
 	private GameManager gameManager;
 	private AudioSource audioSource;
@@ -106,9 +105,12 @@ public class Player : MonoBehaviour {
 	}
 
 	public void damage() {
+		int randomFire = Random.Range(0, 3);
+		
 		if (hasShield) {
 			powerUpShield(false);
 		} else {
+			engineFires[randomFire].SetActive(true);
 			health--;
 			gameManager.uIManager.updateLives(health);
 			if (health <= 0) {
