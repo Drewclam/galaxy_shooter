@@ -17,10 +17,11 @@ public class GameManager : MonoBehaviour {
 			uIManager.showTitle();
 
 			if (Input.GetKeyDown(KeyCode.Space)) {
+				isGameOver = false;
 				uIManager.resetScore();
 				uIManager.hideTitle();
 				spawnManager.spawnPlayer();
-				isGameOver = false;
+				spawnManager.initSpawn();
 			}
 		}
 	}

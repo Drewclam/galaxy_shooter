@@ -7,20 +7,21 @@ public class EnemyAI : MonoBehaviour {
 	private float yMax = 6.46F;
 	private UIManager uIManager;
 	private SpawnManager spawnManager;
+	private GameManager gameManager;
 	[SerializeField] private GameObject _explosionPrefab;
 
 	void Start() {
 		// initialize managers
 		uIManager = GameObject.Find("Canvas").GetComponent<UIManager>();
 		spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
+		gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 	}
 	
 	void Update () {
 		transform.Translate(Vector3.down  * speed * Time.deltaTime);
 
 		if (!getIsWithinBoundary()) {
-			float randomX = Random.Range(-7.87F, 7.87F);
-			transform.position = new Vector3(randomX, yMax, transform.position.z);
+			Destroy(this.gameObject);
 		}
 	}
 

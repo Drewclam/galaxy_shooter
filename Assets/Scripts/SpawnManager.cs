@@ -7,20 +7,25 @@ public class SpawnManager : MonoBehaviour {
 	[SerializeField] private GameObject explosionPrefab;
 	[SerializeField] private GameObject Player;
 	[SerializeField] private GameObject[] powerUps;
+	private GameManager gameManager;
 
 	void Start() {
+		gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+	}
+
+	public void initSpawn() {
 		StartCoroutine(spawnEnemyRoutine());
 		StartCoroutine(spawnPowerUpRoutine());
 	}
 
 	public void spawnPlayer() {
-		Instantiate(Player, new Vector3(0, 0, 0), Quaternion.identity);
+		Instantiate(Player, Vector3.zero, Quaternion.identity);
 	}
 
 	private IEnumerator spawnEnemyRoutine() {
 		float yMax = 6.46F;
 
-		while (true) {
+		while (!gameManager.isGameOver) {
 			float randomX = Random.Range(-7.87F, 7.87F);
 			Instantiate(enemyPrefab, new Vector3(randomX, yMax, transform.position.z), Quaternion.identity);
 			yield return new WaitForSeconds(1.0F);
@@ -30,7 +35,7 @@ public class SpawnManager : MonoBehaviour {
 	private IEnumerator spawnPowerUpRoutine() {
 		float yMax = 6.46F;
 
-		while (true) {
+		while (!gameManager.isGameOver) {
 			float randomX = Random.Range(-7.87F, 7.87F);
 			int randomPowerUp = Random.Range(0, 3);
 			Instantiate(powerUps[randomPowerUp], new Vector3(randomX, yMax, transform.position.z), Quaternion.identity);
@@ -40,6 +45,5 @@ public class SpawnManager : MonoBehaviour {
 
 	public void spawnExplosion(Vector3 location) {
 		Instantiate(explosionPrefab, location, Quaternion.identity);
-		// Destroy(explosionPrefab, explosionPrefab.GetComponent<Animation>().clip.length);
 	}
 }
