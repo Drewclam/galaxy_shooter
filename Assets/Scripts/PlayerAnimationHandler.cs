@@ -9,7 +9,6 @@ public class PlayerAnimationHandler : MonoBehaviour {
 	}
 	
 	void Update () {
-		// if w key pressed or left key pressed
 		if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) {
 			animator.SetBool("isTurningLeft", true);
 			animator.SetBool("isTurningRight", false);
@@ -20,8 +19,5 @@ public class PlayerAnimationHandler : MonoBehaviour {
 		} else if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.RightArrow)) {
 			animator.SetBool("isTurningRight", false);
 		}
-			// set the isTUrningLeft to true
-		// else if w key up or left key up
-			// set isTurningLeft to false
 	}
 }

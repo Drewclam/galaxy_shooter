@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "galaxy_shooter", "Assembly-CSharp.csproj", "{39543BF4-456E-6EED-5297-9E39F38A075E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "galaxy_shooter", "Assembly-CSharp-Editor.csproj", "{4A7E4DE2-8EB4-100C-85F0-33459FAC505D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{39543BF4-456E-6EED-5297-9E39F38A075E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39543BF4-456E-6EED-5297-9E39F38A075E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39543BF4-456E-6EED-5297-9E39F38A075E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A7E4DE2-8EB4-100C-85F0-33459FAC505D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A7E4DE2-8EB4-100C-85F0-33459FAC505D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A7E4DE2-8EB4-100C-85F0-33459FAC505D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A7E4DE2-8EB4-100C-85F0-33459FAC505D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

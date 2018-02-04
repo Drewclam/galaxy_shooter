@@ -105,8 +105,8 @@ public class Player : MonoBehaviour {
 	}
 
 	public void damage() {
-		int randomFire = Random.Range(0, 3);
-		
+		int randomFire = Random.Range(0, 2);
+
 		if (hasShield) {
 			powerUpShield(false);
 		} else {
